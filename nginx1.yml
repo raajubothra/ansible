@@ -1,0 +1,30 @@
+---
+- name: Playbook to Deploy Nginx
+  hosts: web
+  tasks:
+    - name: to run apt update
+      shell: apt update -y
+      tags: 
+        - update
+    - name: git clone
+      shell: cd /tmp && git clone https://github.com/raajubothra/wedding-template2.git
+      tags:
+        - clone
+      
+    - name: to install nginx
+      apt: name=nginx state=latest
+      tags:
+        - install
+    - name: copy files
+      copy:
+       src=/tmp/wedding-template2/wedding-site-template-1.0/
+       dest=/var/www/html/
+       remote_src=yes
+       owner=root
+       group=root
+       mode=0664
+
+    - name: to start nginx service
+      service:
+          name: nginx
+          state: started 
