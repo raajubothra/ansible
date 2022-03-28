@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: to run apt update
-      shell: apt update -y
+      shell: apt update -y && apt install git -y
       tags: 
         - update
     - name: git clone
