@@ -1,6 +1,6 @@
 ---
 - name: Playbook to Deploy Nginx
-  hosts: web
+  hosts: all
   tasks:
     - name: to run apt update
       shell: apt update -y
